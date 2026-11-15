@@ -74,7 +74,7 @@ function normalize(value: string) {
 }
 
 function versionOf(title: string) {
-  const suffix = title.match(/[_\s]+(\d+(?:\.\d+)?)$/);
+  const suffix = title.match(/_\s*(\d+(?:\.\d+)?)$/);
   return suffix ? Number(suffix[1]) : 1;
 }
 
@@ -87,15 +87,15 @@ function loadTracks(chapterNumber: number, names: string[]): AudioTrack[] {
     if (!match || Number(match[1]) !== chapterNumber) continue;
 
     const title = match[2]!;
-    const baseTitle = title.replace(/[_\s]+\d+(?:\.\d+)?$/, "");
+    const baseTitle = title.replace(/_\s*\d+(?:\.\d+)?$/, "");
     if (!nameOrder.has(normalize(baseTitle))) continue;
     tracks.push({ chapter: chapterNumber, title, url, version: versionOf(title) });
   }
 
   return tracks.sort((a, b) => {
     const nameDiff =
-      nameOrder.get(normalize(a.title.replace(/[_\s]+\d+(?:\.\d+)?$/, "")))! -
-      nameOrder.get(normalize(b.title.replace(/[_\s]+\d+(?:\.\d+)?$/, "")))!;
+      nameOrder.get(normalize(a.title.replace(/_\s*\d+(?:\.\d+)?$/, "")))! -
+      nameOrder.get(normalize(b.title.replace(/_\s*\d+(?:\.\d+)?$/, "")))!;
     return nameDiff || a.version - b.version || a.title.localeCompare(b.title);
   });
 }
