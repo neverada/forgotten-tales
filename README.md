@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Storybook Adventure Club
 
 i have uploaded the generic design i want
@@ -25,3 +26,6 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+=======
+# forgotten-tales
+>>>>>>> 9e9c862312f17edda20c4bcb9a593733941045d9
